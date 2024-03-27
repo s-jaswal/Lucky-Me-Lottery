@@ -1,33 +1,61 @@
-const nameArray = [] // create a list to store names 
+// create an array to store names
+const namesArray = []
 
+function addName() {
+    const nameInput = document.getElementById('nameInput') //storing name input element as a var
+    const name = nameInput.value.trim() //get the TRIMMED value of the input box and store in a var
 
-function addName(){
-// get a trimmed version of the name from the input box 
-const nameInput = document.getElementById('nameInput')
-const name = nameInput.value.trim()
-nameArray.push(name)
-displayNames()
-nameInput.value=''
+    namesArray.push(name)//add the name to the end of the array
+    displayNames() // Call the displayNames function to update the list
+
+    nameInput.value = '' // Clear the input field after adding the name
 }
 
-function displayNames(){
-    const nameList = document.getElementById('nameList') // get the UL element
-    nameList.innerHtml='' // clears the list
 
-    for(let i = 0; i  < nameArray.length; i++){
-            const name = nameArray[i] // get the current name from the array 
-            
-            const li = document.createElement('li')
-            li.className='list-group-item' 
+function displayNames() {
+    const nameList = document.getElementById('nameList')
+    nameList.innerHTML = '' //clear out the previous list items
 
-            const span = document.createElement('span')
-            span.textContent = name 
+    for (let i = 0; i < namesArray.length; i++){
+        const name = namesArray[i]
+         
+        const li = document.createElement('li')
+        li.className = 'list-group-item'
 
-            li.appendChild(span)
-            nameList.appendChild(li)
+        const span = document.createElement('span')
+        span.textContent = name
+
+        li.appendChild(span)
+        nameList.appendChild(li)
     }
 }
 
-// add onclick event 
+
+function pickRandomName() {
+    const randomNameDiv = document.getElementById('randomName')
+    randomNameDiv.textContent = ''
+
+
+    //select random name from names array
+    const randomNumber = Math.floor(Math.random() * namesArray.length)
+    const randomName = namesArray[randomNumber]
+
+    randomNameDiv.textContent = randomName
+
+    namesArray.splice(randomNumber, 1)
+
+    displayNames();
+
+
+
+
+}
+
+
+
+
+// Event listener for the button click to add a name
 document.getElementById('addNameBtn').addEventListener('click', addName)
 
+// Event listener for the button click to select and display a rndm name
+document.getElementById('pickRandomBtn').addEventListener('click', pickRandomName)
