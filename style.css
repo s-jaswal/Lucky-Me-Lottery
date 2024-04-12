@@ -1,3 +1,22 @@
 body {
-    margin-left: 50px;
+    background-color: #d3f5e6; /* Light green background */
+    font-family: 'Luckiest Guy', cursive; /* St. Patrick's Day themed font */
+    /* Additional CSS styles can be added here */
+  }
+
+  .green {
+    color:green;
+    font-size: 70px;
+  }
+
+  #addNameBtn:hover {
+    background-color: green; 
+    border-color: #0056b3; 
+    color: #fff; 
+}
+
+#pickRandomBtn:hover {
+    background-color: #0056b3; 
+    border-color: #28a745; 
+    color: #fff; 
 }
